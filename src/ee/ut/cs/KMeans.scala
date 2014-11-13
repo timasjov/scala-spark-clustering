@@ -7,7 +7,7 @@ object KMeans {
   def main(args: Array[String]) {
 
     if (args.length < 3) {
-      System.err.println("Invalid number of arguments: <file> <number of clusters> <converge distance>")
+      System.err.println("Usage: KMeans <file> <number of clusters> <converge distance>")
       System.exit(1)
     }
 
