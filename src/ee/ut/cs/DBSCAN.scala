@@ -31,9 +31,6 @@ object DBSCAN {
     val lines = sc.textFile(inputFile)
     val points = lines.map(parseVector)
 
-    // map with points to trace what elements are visited
-    val pointsMap = points.map(p => (p, 1)).collectAsMap()
-
     // finds distances between all points, returns ((firstPoint, secondPoint), distanceBetweenThem)
     val distanceBetweenPoints = points
       .cartesian(points)
@@ -52,14 +49,9 @@ object DBSCAN {
     }.cache()
 
     // groups by x coordinate
-    val xCoordinatesWithDistance = pointsWithinEpsByX.groupByKey().collect()
+    val xCoordinatesWithDistance = pointsWithinEpsByX.groupByKey()
 
-    pointsMap.foreach(println)
-
-    xCoordinatesWithDistance.foreach({ p =>
-      println("Point:" + p)
-      println("Map:" + pointsMap(p._1))
-    })
+    xCoordinatesWithDistance.foreach(println)
 
     sc.stop()
   }
