@@ -73,7 +73,7 @@ object DBSCAN {
     val numberOfClusters = pointsInCluster
       .map(_._2._1)
       .countByValue()
-      .count { case t => t._2 > minPointsInCluster}
+      .count { case t => t._2 > minPointsInCluster }
 
     println("Total number of clusters: " + numberOfClusters)
     sc.stop()

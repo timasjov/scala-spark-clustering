@@ -5,13 +5,14 @@ import org.apache.spark.{SparkConf, SparkContext}
 object KMeans {
 
   def main(args: Array[String]) {
+    showInfoMessage()
 
     if (args.length < 3) {
       System.err.println("Usage: KMeans <file> <number of clusters> <converge distance>")
       System.exit(1)
     }
 
-    val sparkConf = new SparkConf().setAppName("KMeans clustering")
+    val sparkConf = new SparkConf().setAppName("KMeans")
     val sc = new SparkContext(sparkConf)
 
     val points = sc.textFile(args(0)).map(parseVector).cache()
@@ -49,7 +50,6 @@ object KMeans {
         distanceBetweenOldAndNewCentres += squaredDistance(centers(i), newCentres(i))
         centers(i) = newCentres(i)
       }
-
       iterations += 1
     }
 
@@ -79,6 +79,10 @@ object KMeans {
     val s = System.currentTimeMillis
     f
     System.currentTimeMillis - s
+  }
+
+  def showInfoMessage() {
+    println("Implementation of KMeans clustering algorithm.")
   }
 
 }
