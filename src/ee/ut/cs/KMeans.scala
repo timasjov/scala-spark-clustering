@@ -8,7 +8,7 @@ object KMeans {
     showInfoMessage()
 
     if (args.length < 3) {
-      System.err.println("Usage: KMeans <file> <number of clusters> <converge distance>")
+      System.err.println("Usage: KMeans <file> <number_of_clusters> <converge_distance>")
       System.exit(1)
     }
 
